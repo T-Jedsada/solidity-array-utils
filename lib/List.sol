@@ -43,9 +43,9 @@ library List {
             for (uint j = i + 1; j < length; j++) {
                 bool condition;
                 if (desc) {
-                    condition = arr[i] > arr[j];
-                } else {
                     condition = arr[i] < arr[j];
+                } else {
+                    condition = arr[i] > arr[j];
                 }
                 if (condition) {
                     uint temp = arr[j];
