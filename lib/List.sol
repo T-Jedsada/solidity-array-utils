@@ -37,12 +37,8 @@ library List {
 
     function sort(Items storage data) public returns (uint[]) {
         uint length = data.items.length;
-        uint[] memory arr = new uint[] (length);
-
-        for (uint index = 0; i < length; index++) {
-            arr[i] = data.items[i];
-        }
-
+        uint[] storage arr = data.items;
+        
         for (uint i = 0; i < length; i++) {
             for (uint j = i + 1; j < length; j++) {
                 if (arr[i] < arr[j]) {
