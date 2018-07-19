@@ -35,21 +35,34 @@ library List {
         }
     }
 
-    function sort(Items storage data) public returns (uint[]) {
-        uint length = data.items.length;
-        uint[] storage arr = data.items;
-        
+    function sort(uint[] storage items, bool desc) private returns (uint[]) {
+        uint length = items.length;
+        uint[] storage arr = items;
+
         for (uint i = 0; i < length; i++) {
             for (uint j = i + 1; j < length; j++) {
-                if (arr[i] < arr[j]) {
+                bool condition;
+                if (desc) {
+                    condition = arr[i] > arr[j];
+                } else {
+                    condition = arr[i] < arr[j];
+                }
+                if (condition) {
                     uint temp = arr[j];
                     arr[j] = arr[i];
                     arr[i] = temp;
                 }
             }   
         }
-
         return arr;
+    }
+
+    function sort(Items storage data) public returns (uint[]) {
+        return sort(data.items, false);
+    }
+
+    function sortDESC(Items storage data) public returns (uint[]) {
+        return sort(data.items, true);
     }
     
     function getSize(Items storage data) public view returns (uint) {
